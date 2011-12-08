@@ -178,7 +178,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/guiopenssl/icon_1.jpg"/>
+              <Image iconType="3" name="/guiopenssl/icon.jpg"/>
             </Property>
             <Property name="alignmentY" type="float" value="0.0"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
