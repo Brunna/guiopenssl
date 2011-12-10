@@ -26,18 +26,18 @@ public class Teste {
         // TODO code application logic here
         
 
-            Shell s = new Shell();
+            Shell s = new Shell();//classe que fiz com abstração para execultar na shell
             File f1 = new File("teste.dtxt");
             File f2 = new File("teste.b64");
             BufferedReader buf;
             String line = new String();
             
-            new TelaPrincipal().setVisible(true);
+           // new TelaPrincipal().setVisible(true);//abre tela principal
             
-            buf = s.ExecComandoShell("openssl des -nosalt -in teste.txt -out teste.b64 -k oi");
+            buf = s.ExecComandoShell("openssl des -nosalt -in teste.txt -out teste.b64 -k oi");//execultando o comando
         
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +51,7 @@ public class Teste {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-            if(f1.exists() && f1.length()>1){
+            if(f1.exists() && f1.length()>1){//teste para ver se arquivo foi gerado com sucesso.
                 System.out.println("Aquivo gerado com sucesso!! " + f1.getName());
             }else{
                 System.err.println("Erro ao gerar o arquivo!! " + f1.getName());

@@ -26,23 +26,27 @@ public class TelaCriptSimetrica extends javax.swing.JFrame {
     
     public boolean ValidarForm(){
         
-        if(caminhoArquivoCriptografa.getText() == null){
-                JOptionPane.showMessageDialog(null, "alert", "Escolha o caminho do Arquivo!", JOptionPane.ERROR_MESSAGE);
-                caminhoArquivoCriptografa.setFocusable(true);
+        if(caminhoArquivoCriptografa.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Escolha o caminho do Arquivo!", "Alert" , JOptionPane.ERROR_MESSAGE);
+                caminhoArquivoCriptografa.grabFocus();
                 return false;
         }
-        if(nomeArquivoDestino.getText() == null){
-               JOptionPane.showMessageDialog(null, "alert", "Escolha o arquivo Destino!", JOptionPane.ERROR_MESSAGE);
-               nomeArquivoDestino.setFocusable(true);
+        if(nomeArquivoDestino.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Escolha o arquivo Destino!","alert" , JOptionPane.ERROR_MESSAGE);
+               nomeArquivoDestino.grabFocus();
                return false;
         }
-        if(password.getText() == null){
-            JOptionPane.showMessageDialog(null, "alert", "Digite um senha para a criptografia!", JOptionPane.ERROR_MESSAGE);
-            password.setFocusable(true);
+        if(password.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite um senha para a criptografia!","alert" , JOptionPane.ERROR_MESSAGE);
+            password.grabFocus();
             return false;
         }
         if(lerChaveArq.isSelected()){
-            
+            if(CaminhoArquivoSenha.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Escolha o arquivo com a senha! (A senha deve estar na primeira linha do arquivo.)","alert" , JOptionPane.ERROR_MESSAGE);
+               CaminhoArquivoSenha.grabFocus();
+               return false;
+            }
         }
         return true;
     }
@@ -77,7 +81,7 @@ public class TelaCriptSimetrica extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tipoAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "base64 - Base 64", "bf - cbc-Blowfish in CBC mode", "bf - Alias for bf-cbc", "bf-cfb - Blowfish in CFB mode", "bf-ecb - Blowfish in ECB mode", "bf-ofb - Blowfish in OFB mode", "cast-cbc - CAST in CBC mode", "cast - Alias for cast-cbc", "cast5-cbc - CAST5 in CBC mode", "cast5-cfb - CAST5 in CFB mode", "cast5-ecb - CAST5 in ECB mode", "cast5-ofb - CAST5 in OFB mode", "des-cbc - DES in CBC mode", "des - Alias for des-cbc", "des-cfb - DES in CBC mode", "des-ofb - DES in OFB mode", "des-ecb - DES in ECB mode", "des-ede-cbc - Two key triple DES EDE in CBC mode", "des-ede - Two key triple DES EDE in ECB mode", "des-ede-cfb - Two key triple DES EDE in CFB mode", "des-ede-ofb - Two key triple DES EDE in OFB mode", "des-ede3-cbc - Three key triple DES EDE in CBC mode", "des-ede3 - Three key triple DES EDE in ECB mode", "des3 - Alias for des-ede3-cbc", "des-ede3-cfb - Three key triple DES EDE CFB mode", "des-ede3-ofb  - Three key triple DES EDE in OFB mode", "desx - DESX algorithm.", "gost89 - GOST 28147-89 in CFB mode (provided by ccgost engine)", "gost89-cnt  - GOST 28147-89 in CNT mode (provided by ccgost engine)", "idea-cbc - IDEA algorithm in CBC mode", "idea - same as idea-cbc", "idea-cfb - IDEA in CFB mode", "idea-ecb - IDEA in ECB mode", "idea-ofb - IDEA in OFB mode", "rc2-cbc - 128 bit RC2 in CBC mode", "rc2 - Alias for rc2-cbc", "rc2-cfb - 128 bit RC2 in CFB mode", "rc2-ecb - 128 bit RC2 in ECB mode", "rc2-ofb - 128 bit RC2 in OFB mode", "rc2-64-cbc - 64 bit RC2 in CBC mode", "rc2-40-cbc - 40 bit RC2 in CBC mode", "rc4 - 128 bit RC4", "rc4-64 - 64 bit RC4", "rc4-40 - 40 bit RC4", "rc5-cbc - RC5 cipher in CBC mode", "rc5 - Alias for rc5-cbc", "rc5-cfb - RC5 cipher in CFB mode", "rc5-ecb - RC5 cipher in ECB mode", "rc5-ofb - RC5 cipher in OFB mode", "aes-[128|192|256]-cbc - 128/192/256 bit AES in CBC mode", "aes-[128|192|256] - Alias for aes-[128|192|256]-cbc", "aes-[128|192|256]-cfb - 128/192/256 bit AES in 128 bit CFB mode", "aes-[128|192|256]-cfb1 - 128/192/256 bit AES in 1 bit CFB mode", "aes-[128|192|256]-cfb8 - 128/192/256 bit AES in 8 bit CFB mode", "aes-[128|192|256]-ecb - 128/192/256 bit AES in ECB mode", "aes-[128|192|256]-ofb - 128/192/256 bit AES in OFB mode" }));
+        tipoAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "base64 - Base 64", "bf-cbc - Blowfish in CBC mode", "bf - Alias for bf-cbc", "bf-cfb - Blowfish in CFB mode", "bf-ecb - Blowfish in ECB mode", "bf-ofb - Blowfish in OFB mode", "cast-cbc - CAST in CBC mode", "cast - Alias for cast-cbc", "cast5-cbc - CAST5 in CBC mode", "cast5-cfb - CAST5 in CFB mode", "cast5-ecb - CAST5 in ECB mode", "cast5-ofb - CAST5 in OFB mode", "des-cbc - DES in CBC mode", "des - Alias for des-cbc", "des-cfb - DES in CBC mode", "des-ofb - DES in OFB mode", "des-ecb - DES in ECB mode", "des-ede-cbc - Two key triple DES EDE in CBC mode", "des-ede - Two key triple DES EDE in ECB mode", "des-ede-cfb - Two key triple DES EDE in CFB mode", "des-ede-ofb - Two key triple DES EDE in OFB mode", "des-ede3-cbc - Three key triple DES EDE in CBC mode", "des-ede3 - Three key triple DES EDE in ECB mode", "des3 - Alias for des-ede3-cbc", "des-ede3-cfb - Three key triple DES EDE CFB mode", "des-ede3-ofb  - Three key triple DES EDE in OFB mode", "desx - DESX algorithm.", "gost89 - GOST 28147-89 in CFB mode (provided by ccgost engine)", "gost89-cnt  - GOST 28147-89 in CNT mode (provided by ccgost engine)", "idea-cbc - IDEA algorithm in CBC mode", "idea - same as idea-cbc", "idea-cfb - IDEA in CFB mode", "idea-ecb - IDEA in ECB mode", "idea-ofb - IDEA in OFB mode", "rc2-cbc - 128 bit RC2 in CBC mode", "rc2 - Alias for rc2-cbc", "rc2-cfb - 128 bit RC2 in CFB mode", "rc2-ecb - 128 bit RC2 in ECB mode", "rc2-ofb - 128 bit RC2 in OFB mode", "rc2-64-cbc - 64 bit RC2 in CBC mode", "rc2-40-cbc - 40 bit RC2 in CBC mode", "rc4 - 128 bit RC4", "rc4-64 - 64 bit RC4", "rc4-40 - 40 bit RC4", "rc5-cbc - RC5 cipher in CBC mode", "rc5 - Alias for rc5-cbc", "rc5-cfb - RC5 cipher in CFB mode", "rc5-ecb - RC5 cipher in ECB mode", "rc5-ofb - RC5 cipher in OFB mode", "aes-[128|192|256]-cbc - 128/192/256 bit AES in CBC mode", "aes-[128|192|256] - Alias for aes-[128|192|256]-cbc", "aes-[128|192|256]-cfb - 128/192/256 bit AES in 128 bit CFB mode", "aes-[128|192|256]-cfb1 - 128/192/256 bit AES in 1 bit CFB mode", "aes-[128|192|256]-cfb8 - 128/192/256 bit AES in 8 bit CFB mode", "aes-[128|192|256]-ecb - 128/192/256 bit AES in ECB mode", "aes-[128|192|256]-ofb - 128/192/256 bit AES in OFB mode" }));
         tipoAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoAlgoritmoActionPerformed(evt);
@@ -247,6 +251,13 @@ private void tipoAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void bCriptografarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCriptografarActionPerformed
 // TODO add your handling code here:
+      if(ValidarForm()){
+          JOptionPane.showMessageDialog(null, "Tudo blz", "Alerta", JOptionPane.ERROR_MESSAGE);
+          
+          JOptionPane.showMessageDialog(null, "item selecionado numero: " + tipoAlgoritmo.getSelectedIndex(), "Alerta", JOptionPane.ERROR_MESSAGE);
+      }else{
+          //JOptionPane.showMessageDialog(null, "Algo errado.", "Alerta", JOptionPane.ERROR_MESSAGE);
+      }
 }//GEN-LAST:event_bCriptografarActionPerformed
 
 private void b_decriptografaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_decriptografaActionPerformed
