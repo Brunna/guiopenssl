@@ -35,12 +35,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -76,25 +72,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Criptografia");
 
-        jMenu2.setText("Criptografar");
-
         jMenuItem11.setText("Simétrica");
-        jMenu2.add(jMenuItem11);
+        jMenu4.add(jMenuItem11);
 
         jMenuItem12.setText("Assimétrica");
-        jMenu2.add(jMenuItem12);
-
-        jMenu4.add(jMenu2);
-
-        jMenu5.setText("Decriptografar");
-
-        jMenuItem13.setText("Simétrica");
-        jMenu5.add(jMenuItem13);
-
-        jMenuItem14.setText("Assimétrica");
-        jMenu5.add(jMenuItem14);
-
-        jMenu4.add(jMenu5);
+        jMenu4.add(jMenuItem12);
 
         jMenuBar2.add(jMenu4);
 
@@ -213,10 +195,8 @@ private void Sair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -225,8 +205,6 @@ private void Sair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

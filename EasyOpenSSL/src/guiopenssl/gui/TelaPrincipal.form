@@ -14,40 +14,16 @@
             <Property name="text" type="java.lang.String" value="Criptografia"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="jMenu2">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Criptografar"/>
+                <Property name="text" type="java.lang.String" value="Sim&#xe9;trica"/>
               </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Sim&#xe9;trica"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Assim&#xe9;trica"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu5">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Decriptografar"/>
+                <Property name="text" type="java.lang.String" value="Assim&#xe9;trica"/>
               </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Sim&#xe9;trica"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Assim&#xe9;trica"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6">
