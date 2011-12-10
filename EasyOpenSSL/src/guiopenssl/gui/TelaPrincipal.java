@@ -14,10 +14,10 @@ package guiopenssl.gui;
  *
  * @author Edviges
  */
-public class Frontend extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     /** Creates new form Frontend */
-    public Frontend() {
+    public TelaPrincipal() {
         initComponents();
     }
 
@@ -55,6 +55,7 @@ public class Frontend extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSSL");
@@ -141,6 +142,14 @@ public class Frontend extends javax.swing.JFrame {
         jMenuItem2.setText("Sobre o Projeto");
         jMenu1.add(jMenuItem2);
 
+        jMenuItem15.setText("Sair");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sair(evt);
+            }
+        });
+        jMenu1.add(jMenuItem15);
+
         jMenuBar2.add(jMenu1);
 
         setJMenuBar(jMenuBar2);
@@ -159,6 +168,12 @@ public class Frontend extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+private void Sair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair
+// TODO add your handling code here:
+        setVisible(false);
+        dispose();
+}//GEN-LAST:event_Sair
+
     /**
      * @param args the command line arguments
      */
@@ -176,13 +191,13 @@ public class Frontend extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -190,10 +205,11 @@ public class Frontend extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Frontend().setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -211,6 +227,7 @@ public class Frontend extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
