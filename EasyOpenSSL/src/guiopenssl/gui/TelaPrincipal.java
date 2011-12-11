@@ -10,6 +10,8 @@
  */
 package guiopenssl.gui;
 
+import guiopenssl.gui.*;
+
 /**
  *
  * @author Edviges
@@ -73,6 +75,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Criptografia");
 
         jMenuItem11.setText("Simétrica");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem11);
 
         jMenuItem12.setText("Assimétrica");
@@ -155,6 +162,12 @@ private void Sair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair
         setVisible(false);
         dispose();
 }//GEN-LAST:event_Sair
+
+private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+// TODO add your handling code here:
+    TelaCriptSimetrica telaCriptSimetrica = new TelaCriptSimetrica();
+        telaCriptSimetrica.setVisible(true);
+}//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
