@@ -35,11 +35,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        menuArquivo = new javax.swing.JMenu();
+        menuCriptografia = new javax.swing.JMenu();
+        itemCriptoSimetrica = new javax.swing.JMenuItem();
+        menuCriptoAssimetrica = new javax.swing.JMenu();
+        itemMenuAssimCripto = new javax.swing.JMenuItem();
+        menuCertificados = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -50,7 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuAjuda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -69,25 +70,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        jMenu3.setText("Arquivo");
-        jMenuBar2.add(jMenu3);
+        menuArquivo.setText("Arquivo");
+        jMenuBar2.add(menuArquivo);
 
-        jMenu4.setText("Criptografia");
+        menuCriptografia.setText("Criptografia");
 
-        jMenuItem11.setText("Simétrica");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        itemCriptoSimetrica.setText("Simétrica");
+        itemCriptoSimetrica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                itemCriptoSimetricaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem11);
+        menuCriptografia.add(itemCriptoSimetrica);
 
-        jMenuItem12.setText("Assimétrica");
-        jMenu4.add(jMenuItem12);
+        menuCriptoAssimetrica.setText("Assimétrica");
 
-        jMenuBar2.add(jMenu4);
+        itemMenuAssimCripto.setText("Criptografar");
+        itemMenuAssimCripto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuAssimCriptoActionPerformed(evt);
+            }
+        });
+        menuCriptoAssimetrica.add(itemMenuAssimCripto);
 
-        jMenu6.setText("Certificados");
+        menuCriptografia.add(menuCriptoAssimetrica);
+
+        jMenuBar2.add(menuCriptografia);
+
+        menuCertificados.setText("Certificados");
 
         jMenu7.setText("Assinaturas Digitais");
 
@@ -100,7 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem10.setText("Verificar assinaturas digitais em arquivos");
         jMenu7.add(jMenuItem10);
 
-        jMenu6.add(jMenu7);
+        menuCertificados.add(jMenu7);
 
         jMenu8.setText("Certificados Digitais");
 
@@ -116,20 +126,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem7.setText("Gerar requisição de certificado");
         jMenu8.add(jMenuItem7);
 
-        jMenu6.add(jMenu8);
+        menuCertificados.add(jMenu8);
 
         jMenuItem3.setText("Gerar autoridade certificadora (CA)");
-        jMenu6.add(jMenuItem3);
+        menuCertificados.add(jMenuItem3);
 
-        jMenuBar2.add(jMenu6);
+        jMenuBar2.add(menuCertificados);
 
-        jMenu1.setText("Ajuda");
+        menuAjuda.setText("Ajuda");
 
         jMenuItem1.setText("Exibir Ajuda");
-        jMenu1.add(jMenuItem1);
+        menuAjuda.add(jMenuItem1);
 
         jMenuItem2.setText("Sobre o Projeto");
-        jMenu1.add(jMenuItem2);
+        menuAjuda.add(jMenuItem2);
 
         jMenuItem15.setText("Sair");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -137,9 +147,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 Sair(evt);
             }
         });
-        jMenu1.add(jMenuItem15);
+        menuAjuda.add(jMenuItem15);
 
-        jMenuBar2.add(jMenu1);
+        jMenuBar2.add(menuAjuda);
 
         setJMenuBar(jMenuBar2);
 
@@ -163,11 +173,17 @@ private void Sair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair
         dispose();
 }//GEN-LAST:event_Sair
 
-private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+private void itemCriptoSimetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCriptoSimetricaActionPerformed
 // TODO add your handling code here:
     TelaCriptSimetrica telaCriptSimetrica = new TelaCriptSimetrica();
         telaCriptSimetrica.setVisible(true);
-}//GEN-LAST:event_jMenuItem11ActionPerformed
+}//GEN-LAST:event_itemCriptoSimetricaActionPerformed
+
+private void itemMenuAssimCriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAssimCriptoActionPerformed
+// TODO add your handling code here:
+    TelaCriptAssimetrica telaCriptAssimetrica = new TelaCriptAssimetrica();
+    telaCriptAssimetrica.setVisible(true);
+}//GEN-LAST:event_itemMenuAssimCriptoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,18 +222,14 @@ private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itemCriptoSimetrica;
+    private javax.swing.JMenuItem itemMenuAssimCripto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -228,5 +240,10 @@ private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuArquivo;
+    private javax.swing.JMenu menuCertificados;
+    private javax.swing.JMenu menuCriptoAssimetrica;
+    private javax.swing.JMenu menuCriptografia;
     // End of variables declaration//GEN-END:variables
 }
