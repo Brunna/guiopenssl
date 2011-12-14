@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import utilites.Shell;
+import guiopenssl.utilities.Shell;
 
 /**
  *

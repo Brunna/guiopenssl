@@ -10,6 +10,9 @@
  */
 package guiopenssl.gui;
 
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gabriel
@@ -19,6 +22,19 @@ public class TelaHash extends javax.swing.JFrame {
     /** Creates new form TelaHash */
     public TelaHash() {
         initComponents();
+    }
+    
+    public boolean ValidarForm(){
+        
+        if(arquivoOrigemHash.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Escolha o caminho do Arquivo!", "Alerta" , JOptionPane.ERROR_MESSAGE);
+                arquivoOrigemHash.grabFocus();
+                return false;
+        }
+        
+        
+        
+        return true;
     }
 
     /** This method is called from within the constructor to
@@ -30,21 +46,79 @@ public class TelaHash extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        arquivoOrigemHash = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jButton1.setText("Gerar Hash");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Selicione Arquivo para gerar Hash: ");
+
+        jButton2.setText("selecionar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(arquivoOrigemHash, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addComponent(jButton1))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(arquivoOrigemHash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+// TODO add your handling code here:
+    JFileChooser abrir = new JFileChooser();
+    String caminho;
+    int retorno = abrir.showOpenDialog(null);  
+    
+    if (retorno==JFileChooser.APPROVE_OPTION){  
+        caminho = abrir.getSelectedFile().getAbsolutePath();
+        arquivoOrigemHash.setText(caminho);
+    }
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+// TODO add your handling code here:
+    if(ValidarForm()){
+        JOptionPane.showMessageDialog(null,"Deu Certo!!", "Alerta" , JOptionPane.ERROR_MESSAGE);
+    }
+}//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +156,9 @@ public class TelaHash extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField arquivoOrigemHash;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
