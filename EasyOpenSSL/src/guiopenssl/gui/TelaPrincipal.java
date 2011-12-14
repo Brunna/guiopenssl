@@ -129,6 +129,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCertificados.add(jMenu8);
 
         jMenuItem3.setText("Gerar autoridade certificadora (CA)");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menuCertificados.add(jMenuItem3);
 
         jMenuBar2.add(menuCertificados);
@@ -184,6 +189,12 @@ private void itemMenuAssimCriptoActionPerformed(java.awt.event.ActionEvent evt) 
     TelaCriptAssimetrica telaCriptAssimetrica = new TelaCriptAssimetrica();
     telaCriptAssimetrica.setVisible(true);
 }//GEN-LAST:event_itemMenuAssimCriptoActionPerformed
+
+private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+// TODO add your handling code here:
+    TelaCA telaCA = new TelaCA();
+    telaCA.setVisible(true);
+}//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

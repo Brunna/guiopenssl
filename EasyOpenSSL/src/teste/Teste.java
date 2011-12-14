@@ -27,25 +27,29 @@ public class Teste {
         
 
             Shell s = new Shell();//classe que fiz com abstração para execultar na shell
-            File f1 = new File("teste.dtxt");
-            File f2 = new File("teste.b64");
+            File f1 = new File("cakey.pem");
+            File f2 = new File("careq.pem");
             BufferedReader buf;
             String line = new String();
             
            // new TelaPrincipal().setVisible(true);//abre tela principal
             
-            buf = s.ExecComandoShell("openssl des -nosalt -in teste.txt -out teste.b64 -k oi");//execultando o comando
+            /*buf = s.ExecComandoShell("openssl des -nosalt -in teste.txt -out teste.b64 -k oi");//execultando o comando
         
         try {
             Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
             
                     
-            buf = s.ExecComandoShell("openssl des -d -nosalt  -in  teste.b64 -out teste.dtxt -k oi");
+            buf = s.ExecComandoShell("openssl req  -new -keyout cakey.pem -out careq.pem -passout pass:1234567890");
         
-        try {
+        while( (line=buf.readLine())==null){
+            System.out.println(line);
+        }
+            
+         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
