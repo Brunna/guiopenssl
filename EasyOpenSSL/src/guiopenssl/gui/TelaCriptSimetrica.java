@@ -238,9 +238,9 @@ public class TelaCriptSimetrica extends javax.swing.JFrame {
                 .addComponent(prossDadoBase64)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bCriptografar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_decriptografa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(bCriptografar)
+                    .addComponent(b_decriptografa))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
