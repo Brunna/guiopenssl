@@ -14,6 +14,7 @@ import guiopenssl.utilities.Shell;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -101,7 +102,8 @@ public class TelaCA3 extends javax.swing.JFrame {
 private void gerarCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarCAButtonActionPerformed
 // TODO add your handling code here:
     Shell s = new Shell();  
-    BufferedReader buf;
+    BufferedWriter bw = null;
+    BufferedReader br = null;
     String shell = "openssl ";
     String dias;
     
@@ -111,6 +113,46 @@ private void gerarCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     shell = shell + " -batch -keyfile cakey.pem -selfsign -extensions v3_ca -infiles careq.pem";
     
     s.ExecComandoShell(shell);
+        try {
+            bw = s.GetbufferWrite();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCA3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+        for(int i=0;i<9;i++){
+            try {
+                bw.write("\n");//Escreve na entrada padrão
+            } catch (IOException ex) {
+                Logger.getLogger(TelaCA3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                bw.flush();//força a escrita na entrada padrão
+            } catch (IOException ex) {
+                Logger.getLogger(TelaCA3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        /*Se quizer ler da entrada padrão faz o seguinte
+        try {
+            br = s.GetBufferedReader();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCA3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            //Aqui a linha ja foi lida.
+            String line=br.readLine();
+            //Se quizer pode fazer while
+            while((line=br.readLine())==null){
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TelaCA3.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        
+        
+        
+        
     
     dispose();
 }//GEN-LAST:event_gerarCAButtonActionPerformed
