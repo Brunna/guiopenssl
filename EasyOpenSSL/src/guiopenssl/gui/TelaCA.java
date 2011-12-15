@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import guiopenssl.utilities.Shell;
 
 /**
  *
@@ -30,10 +31,21 @@ public class TelaCA extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void ValidarForm() {
+    public void/*Boolean*/ ValidarForm() {
         
-                
-        
+        /*if ((senhaCA.getPassword().length == 0)) {
+            JOptionPane.showMessageDialog(null, "Digite um senha!", "Alerta", JOptionPane.ERROR_MESSAGE);
+            senhaCA.grabFocus();
+            return false;
+        }
+
+        if (senhaCA.getText().compareTo(senhaCA1.getText()) != 0) {
+            JOptionPane.showMessageDialog(null, "Senhas não conferem!", "Alerta", JOptionPane.ERROR_MESSAGE);
+            senhaCA1.grabFocus();
+            return false;
+        }
+               
+        return true;*/
     }
 
     /** This method is called from within the constructor to
@@ -45,79 +57,36 @@ public class TelaCA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelCA = new javax.swing.JLabel();
-        criaCAButton = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criptografia Assimétrica");
 
-        labelCA.setText("Informe a senha para gerar a autoridade certificadora:");
-
-        criaCAButton.setText("Criar");
-        criaCAButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                criaCAButtonActionPerformed(evt);
-            }
-        });
-
-        jPasswordField1.setText("jPasswordField1");
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Para criar uma CA (autoridade cerificadora), siga os passos a seguir:\n\n1. Entre no terminal e digite: cd /usr/lib/ssl/ e dê Enter.\n2. Modifique o arquivo openssl.cnf, em modo de super usuário, digitando: sudo\n     <vim | gedit | mcedit> openssl.cnf e digite sua senha.\n3. Modifique como listado abaixo nas seguintes linhas:\n     linha 75: default_md = sha256 (ou sha384 ou sha512, o que preferir)\n     linha 106: default_bits = 2048 (ou 4096)\n     linha 129: countryName_default = BR\n     linha 133: stateOrProvincyName_default = PB\n     linha 137: localityName_default = Joao Pessoa (essa linha você vai criar)\n     linha 140: 0.organizationName_default = UFPB\n     linha 147: organizationalUnitName_default = Departamento de Informatica (essa linha aparece \n     comentada, você vai retirar a cerquilha do início)\n     linha 151: commonName_default = Autoridade Certificadora da UFPB (essa linha você vai criar)\n     linha 155: emailAddress_default = albuquerque.brunna@gmail.com\n4. OK, dê um esc e digite :wq. Dê enter para salvar o documento.\n5. Agora vá para o dietório misc: cd misc/ e dê Enter. Abra o documento CA.pl.\n6.  ");
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(labelCA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(criaCAButton)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCA)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
-                .addComponent(criaCAButton)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-private void criaCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criaCAButtonActionPerformed
-// TODO add your handling code here:
-    Shell s = new Shell();
-    BufferedReader buffer;
-    String shell = "openssl ";
-    
-    shell = shell + "req  -new -keyout cakey.pem -out careq.pem -passout pass:1234567890";
-               
-    s.ExecComandoShell(shell);
-    
-        try {
-            BufferedWriter bufferwrite = s.GetbufferWrite();
-            for(int i = 0; i < 9; i++){
-            bufferwrite.write("\n");
-            bufferwrite.flush();
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(TelaCA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    shell = shell + "ca  -create_serial -out cacert.pem -days 1095 -batch -keyfile cakey.pem -selfsign -extensions v3_ca -infiles careq.pem";
-    
-    s.ExecComandoShell(shell);
-}//GEN-LAST:event_criaCAButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,8 +124,7 @@ private void criaCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton criaCAButton;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JLabel labelCA;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

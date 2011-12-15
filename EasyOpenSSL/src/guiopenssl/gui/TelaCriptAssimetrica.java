@@ -18,73 +18,56 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import guiopenssl.utilities.Shell;
 
+
 /**
  *
- * @author gabriel
+ * @author Edviges
  */
 public class TelaCriptAssimetrica extends javax.swing.JFrame {
+    
+    
 
     /** Creates new form TelaCriptSimetrica */
     public TelaCriptAssimetrica() {
         initComponents();
     }
+    
+    public String GerarChavePrivada(){
+        String s = null;
+       
+        TelaCriarChavePrivada telachaveprivada = new TelaCriarChavePrivada();
+        telachaveprivada.setVisible(true);
+        
+        while(telachaveprivada.isActive()){
+                
+        }
+        return s;
+    }
 
     public boolean ValidarForm() {
-        
-        Long numero;
 
-        if (campoNumBits.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite o número de bits da chave!", "Alerta", JOptionPane.ERROR_MESSAGE);
+        if (chavePrivadaSim.isSelected() && campoChavePrivada.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Selecione a Chave Privada!", "Alerta", JOptionPane.ERROR_MESSAGE);
             caminhoArquivoOrigem.grabFocus();
             return false;
         }
         
-        try {
-            numero = Long.parseLong(campoNumBits.getText());
-
-            if (numero < 0) {
-                JOptionPane.showMessageDialog(null, "Digite um número válido maior que zero!", "Alerta", JOptionPane.ERROR_MESSAGE);
-                campoNumBits.grabFocus();
-                return false;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Digite um número!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            campoNumBits.grabFocus();
-            return false;
-        }
-        
         if (caminhoArquivoOrigem.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Escolha o caminho do Arquivo!", "Alerta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione o caminho do Arquivo!", "Alerta", JOptionPane.ERROR_MESSAGE);
             caminhoArquivoOrigem.grabFocus();
             return false;
         }
         
         if (caminhoArquivoDestino.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Escolha o arquivo Destino!", "Alerta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Crie o arquivo no local de destino!", "Alerta", JOptionPane.ERROR_MESSAGE);
             caminhoArquivoDestino.grabFocus();
             return false;
         }
         
-        if ((campoSenha.getPassword().length == 0) && !jLerChaveArquivo.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Digite um senha para a criptografia!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            campoSenha.grabFocus();
-            return false;
+        if(chavePrivadaNao.isSelected()){
+            GerarChavePrivada();            
         }
-        
-        if (campoSenha.getText().compareTo(campoConfSenha.getText()) != 0) {
-            JOptionPane.showMessageDialog(null, "Senhas não conferem!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            campoSenha.grabFocus();
-            campoConfSenha.grabFocus();
-            return false;
-        }
-        
-        if (jLerChaveArquivo.isSelected()) {
-            if (caminhoLerChaveArquivo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escolha o arquivo com a senha! (A senha deve estar na primeira linha do arquivo.)", "Alerta", JOptionPane.ERROR_MESSAGE);
-                caminhoLerChaveArquivo.grabFocus();
-                return false;
-            }
-        }
+                
         return true;
         
     }
@@ -98,6 +81,7 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         labelTipoAlgoritmo = new javax.swing.JLabel();
         tipoAlgoritmo = new javax.swing.JComboBox();
         labelArquivoOrigem = new javax.swing.JLabel();
@@ -106,18 +90,13 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
         labelArquivoDestino = new javax.swing.JLabel();
         caminhoArquivoDestino = new javax.swing.JTextField();
         selecionarArquivoDestino = new javax.swing.JButton();
-        labelSenha = new javax.swing.JLabel();
-        labelConfSenha = new javax.swing.JLabel();
-        campoSenha = new javax.swing.JPasswordField();
-        campoConfSenha = new javax.swing.JPasswordField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLerChaveArquivo = new javax.swing.JCheckBox();
-        caminhoLerChaveArquivo = new javax.swing.JTextField();
-        botaoLerChaveArquivo = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
         botaoCriptografar = new javax.swing.JButton();
-        labelNumBits = new javax.swing.JLabel();
-        campoNumBits = new javax.swing.JTextField();
+        labelSePossuiChavePrivada = new javax.swing.JLabel();
+        chavePrivadaSim = new javax.swing.JRadioButton();
+        chavePrivadaNao = new javax.swing.JRadioButton();
+        campoChavePrivada = new javax.swing.JTextField();
+        botaoChavePrivada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criptografia Assimétrica");
@@ -161,21 +140,6 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
             }
         });
 
-        labelSenha.setText("Digite senha:");
-
-        labelConfSenha.setText("Confirme senha:");
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jLerChaveArquivo.setText("Ler Chave de Arquivo");
-        jLerChaveArquivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLerChaveArquivoActionPerformed(evt);
-            }
-        });
-
-        botaoLerChaveArquivo.setText("selecionar");
-
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,18 +154,30 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
             }
         });
 
-        labelNumBits.setText("Selecione o número de bits:");
+        labelSePossuiChavePrivada.setText("Já possui chave privada?");
 
-        campoNumBits.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(chavePrivadaSim);
+        chavePrivadaSim.setText("Sim,");
+        chavePrivadaSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNumBitsActionPerformed(evt);
+                chavePrivadaSimActionPerformed(evt);
             }
         });
-        campoNumBits.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoNumBitsKeyTyped(evt);
+
+        buttonGroup1.add(chavePrivadaNao);
+        chavePrivadaNao.setSelected(true);
+        chavePrivadaNao.setText("Não, desejo criar uma agora.");
+        chavePrivadaNao.setToolTipText("<html><spam><b>Ação será executada ao presssionar \"Criptografar!\"</b></spam></html>");
+        chavePrivadaNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chavePrivadaNaoActionPerformed(evt);
             }
         });
+
+        campoChavePrivada.setEnabled(false);
+
+        botaoChavePrivada.setText("selecionar");
+        botaoChavePrivada.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,50 +187,38 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTipoAlgoritmo)
-                            .addComponent(labelNumBits))
+                        .addComponent(labelTipoAlgoritmo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tipoAlgoritmo, 0, 473, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelSePossuiChavePrivada)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoNumBits, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                            .addComponent(tipoAlgoritmo, 0, 318, Short.MAX_VALUE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(labelArquivoDestino)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(caminhoArquivoDestino))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(labelArquivoOrigem)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(caminhoArquivoOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(12, 12, 12)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(selecionarArquivoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(selecionarArquivoOrigem)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelConfSenha)
-                                .addComponent(labelSenha))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(campoSenha)
-                                .addComponent(campoConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(caminhoLerChaveArquivo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(botaoLerChaveArquivo))
-                                .addComponent(jLerChaveArquivo)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoCriptografar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(botaoCancelar))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(chavePrivadaSim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoChavePrivada, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoChavePrivada))
+                            .addComponent(chavePrivadaNao)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelArquivoDestino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(caminhoArquivoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelArquivoOrigem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(caminhoArquivoOrigem, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selecionarArquivoOrigem)
+                            .addComponent(selecionarArquivoDestino)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botaoCancelar)
+                        .addGap(14, 14, 14)
+                        .addComponent(botaoCriptografar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -265,9 +229,15 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
                     .addComponent(labelTipoAlgoritmo)
                     .addComponent(tipoAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNumBits)
-                    .addComponent(campoNumBits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chavePrivadaSim)
+                            .addComponent(campoChavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoChavePrivada))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chavePrivadaNao))
+                    .addComponent(labelSePossuiChavePrivada))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelArquivoOrigem)
@@ -278,28 +248,11 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
                     .addComponent(labelArquivoDestino)
                     .addComponent(caminhoArquivoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selecionarArquivoDestino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelSenha)
-                            .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelConfSenha)
-                            .addComponent(campoConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLerChaveArquivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(caminhoLerChaveArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoLerChaveArquivo)))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoCriptografar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -329,10 +282,6 @@ private void selecionarArquivoDestinoActionPerformed(java.awt.event.ActionEvent 
     }
 }//GEN-LAST:event_selecionarArquivoDestinoActionPerformed
 
-private void jLerChaveArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLerChaveArquivoActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jLerChaveArquivoActionPerformed
-
 private void selecionarArquivoOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarArquivoOrigemActionPerformed
 // TODO add your handling code here:
     JFileChooser abrir = new JFileChooser();
@@ -355,33 +304,59 @@ private void botaoCriptografarActionPerformed(java.awt.event.ActionEvent evt) {/
         String caminhoOrigem = caminhoArquivoOrigem.getText();
         String caminhoDestino = caminhoArquivoDestino.getText();
         String caminhoArqSenha;
-        File fCriptografa = new File(caminhoOrigem);
+        File fOrigem = new File(caminhoOrigem);
         File fDestino = new File(caminhoDestino);
-
 
         switch (tipoAlgoritmo.getSelectedIndex()) {
             case 0:
-                shell = shell + "";
+                
                 break;
             case 1:
-                shell = shell + "";
+                shell = shell + "genrsa ";
                 break;
-        }
+     }
+        
+        
+        
+        s.ExecComandoShell(shell);//executando o comando
+        
+        
+       
+       try {
+            Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s
+       } catch (InterruptedException ex) {
+            Logger.getLogger(TelaCriptSimetrica.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+       if(fDestino.exists() && fDestino.length()>1){//teste para ver se arquivo foi gerado com sucesso.
+           JOptionPane.showMessageDialog(null, "Arquivo gerado com Sucesso! " + fDestino.getName() ,"OK" , JOptionPane.INFORMATION_MESSAGE);
+       }else{
+           JOptionPane.showMessageDialog(null, "Erro ao Criptografar " + fOrigem.getName(),"Alerta" , JOptionPane.ERROR_MESSAGE);
+       }
     }
 }//GEN-LAST:event_botaoCriptografarActionPerformed
-
-private void campoNumBitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumBitsActionPerformed
-// TODO add your handling code here:   
-}//GEN-LAST:event_campoNumBitsActionPerformed
 
 private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
 // TODO add your handling code here:
     dispose();
 }//GEN-LAST:event_botaoCancelarActionPerformed
 
-private void campoNumBitsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNumBitsKeyTyped
+private void chavePrivadaNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chavePrivadaNaoActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_campoNumBitsKeyTyped
+    if(chavePrivadaNao.isSelected()){
+        campoChavePrivada.setEnabled(false);
+        botaoChavePrivada.setEnabled(false);
+    }
+}//GEN-LAST:event_chavePrivadaNaoActionPerformed
+
+private void chavePrivadaSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chavePrivadaSimActionPerformed
+// TODO add your handling code here:
+    if(chavePrivadaSim.isSelected()){
+        campoChavePrivada.setEnabled(true);
+        botaoChavePrivada.setEnabled(true);
+        campoChavePrivada.grabFocus();
+    }
+}//GEN-LAST:event_chavePrivadaSimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,21 +395,17 @@ private void campoNumBitsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoChavePrivada;
     private javax.swing.JButton botaoCriptografar;
-    private javax.swing.JButton botaoLerChaveArquivo;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField caminhoArquivoDestino;
     private javax.swing.JTextField caminhoArquivoOrigem;
-    private javax.swing.JTextField caminhoLerChaveArquivo;
-    private javax.swing.JPasswordField campoConfSenha;
-    private javax.swing.JTextField campoNumBits;
-    private javax.swing.JPasswordField campoSenha;
-    private javax.swing.JCheckBox jLerChaveArquivo;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField campoChavePrivada;
+    private javax.swing.JRadioButton chavePrivadaNao;
+    private javax.swing.JRadioButton chavePrivadaSim;
     private javax.swing.JLabel labelArquivoDestino;
     private javax.swing.JLabel labelArquivoOrigem;
-    private javax.swing.JLabel labelConfSenha;
-    private javax.swing.JLabel labelNumBits;
-    private javax.swing.JLabel labelSenha;
+    private javax.swing.JLabel labelSePossuiChavePrivada;
     private javax.swing.JLabel labelTipoAlgoritmo;
     private javax.swing.JButton selecionarArquivoDestino;
     private javax.swing.JButton selecionarArquivoOrigem;

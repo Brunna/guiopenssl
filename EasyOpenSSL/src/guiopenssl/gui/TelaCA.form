@@ -23,56 +23,39 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="labelCA" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPasswordField1" min="-2" pref="137" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
-                      <Component id="criaCAButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="831" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelCA" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="199" max="32767" attributes="0"/>
-              <Component id="criaCAButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="376" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="labelCA">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Informe a senha para gerar a autoridade certificadora:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="criaCAButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Criar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criaCAButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Para criar uma CA (autoridade cerificadora), siga os passos a seguir:&#xa;&#xa;1. Entre no terminal e digite: cd /usr/lib/ssl/ e d&#xea; Enter.&#xa;2. Modifique o arquivo openssl.cnf, em modo de super usu&#xe1;rio, digitando: sudo&#xa;     &lt;vim | gedit | mcedit&gt; openssl.cnf e digite sua senha.&#xa;3. Modifique como listado abaixo nas seguintes linhas:&#xa;     linha 75: default_md = sha256 (ou sha384 ou sha512, o que preferir)&#xa;     linha 106: default_bits = 2048 (ou 4096)&#xa;     linha 129: countryName_default = BR&#xa;     linha 133: stateOrProvincyName_default = PB&#xa;     linha 137: localityName_default = Joao Pessoa (essa linha voc&#xea; vai criar)&#xa;     linha 140: 0.organizationName_default = UFPB&#xa;     linha 147: organizationalUnitName_default = Departamento de Informatica (essa linha aparece &#xa;     comentada, voc&#xea; vai retirar a cerquilha do in&#xed;cio)&#xa;     linha 151: commonName_default = Autoridade Certificadora da UFPB (essa linha voc&#xea; vai criar)&#xa;     linha 155: emailAddress_default = albuquerque.brunna@gmail.com&#xa;4. OK, d&#xea; um esc e digite :wq. D&#xea; enter para salvar o documento.&#xa;5. Agora v&#xe1; para o diet&#xf3;rio misc: cd misc/ e d&#xea; Enter. Abra o documento CA.pl.&#xa;6.  "/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
