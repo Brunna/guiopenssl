@@ -4,75 +4,31 @@
  */
 
 /*
- * TelaCriarChavePrivada.java
+ * TelaCriarChavePrivadaDialog.java
  *
- * Created on 14/12/2011, 21:15:45
+ * Created on 15/12/2011, 00:27:18
  */
 package guiopenssl.gui;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author edviges
+ * @author gabriel
  */
-public class TelaCriarChavePrivada extends javax.swing.JFrame {
+public class TelaCriarChavePrivadaDialog extends javax.swing.JDialog {
+    private String caminho;
 
-    private Long numeroBits;
-    private boolean statusTela;
-    private String caminho=null;
-    
-    /** Creates new form TelaCriarChavePrivada */
-    public TelaCriarChavePrivada() {
+    /** Creates new form TelaCriarChavePrivadaDialog */
+    public TelaCriarChavePrivadaDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
     
-    public String GetCaminho(){
+    public String getCaminho(){
         return caminho;
     }
     
-    public boolean ValidaForm(){
-        
-        if(campoNumBits.getText().equals("")){
-            numeroBits = 512L;
-        }else{
-            numeroBits = Long.parseLong(campoNumBits.getText());
-            
-            if(numeroBits <= 512){
-                        JOptionPane.showMessageDialog(null, "Digite um número válido maior ou igual que 512!", "Alerta", JOptionPane.ERROR_MESSAGE);
-                        campoNumBits.grabFocus();
-                        return false;
-            }
-        }
-        
-        if (caminhoArquivoDestinoChavePrivada.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Crie o arquivo no local de destino!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            caminhoArquivoDestinoChavePrivada.grabFocus();
-            return false;
-        }
-        
-        if ((campoSenha.getPassword().length == 0)) {
-            JOptionPane.showMessageDialog(null, "Digite um senha para a criptografia!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            campoSenha.grabFocus();
-            return false;
-        }
-
-        if (campoSenha.getText().compareTo(campoConfSenha.getText()) != 0) {
-            JOptionPane.showMessageDialog(null, "Senhas não conferem!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            campoSenha.grabFocus();
-            campoConfSenha.grabFocus();
-            return false;
-        }
-  
-    return true;
-    }
-    
-    public Boolean getStatusTela(){
-    
-        return statusTela;
-    }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -82,9 +38,10 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelNumBits = new javax.swing.JLabel();
-        campoNumBits = new javax.swing.JTextField();
         campoConfSenha = new javax.swing.JPasswordField();
+        campoNumBits = new javax.swing.JTextField();
+        selecionarArquivoDestinoChaveprivada = new javax.swing.JButton();
+        labelNumBits = new javax.swing.JLabel();
         labelConfSenha = new javax.swing.JLabel();
         campoSenha = new javax.swing.JPasswordField();
         labelUsoSenha = new javax.swing.JLabel();
@@ -93,11 +50,10 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         botaoCriaChavePrivada = new javax.swing.JButton();
         labelArquivoDestinoChavePrivada = new javax.swing.JLabel();
         caminhoArquivoDestinoChavePrivada = new javax.swing.JTextField();
-        selecionarArquivoDestinoChaveprivada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelNumBits.setText("Selecione o número de bits:");
+        campoConfSenha.setEnabled(false);
 
         campoNumBits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +66,14 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
             }
         });
 
-        campoConfSenha.setEnabled(false);
+        selecionarArquivoDestinoChaveprivada.setText("selecionar");
+        selecionarArquivoDestinoChaveprivada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecionarArquivoDestinoChaveprivadaActionPerformed(evt);
+            }
+        });
+
+        labelNumBits.setText("Selecione o número de bits:");
 
         labelConfSenha.setText("Confirme senha:");
 
@@ -141,17 +104,11 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
             }
         });
 
-        selecionarArquivoDestinoChaveprivada.setText("selecionar");
-        selecionarArquivoDestinoChaveprivada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selecionarArquivoDestinoChaveprivadaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 424, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +120,7 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(campoSenha)
                             .addComponent(campoConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoCriaChavePrivada))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +130,7 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoNumBits, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(caminhoArquivoDestinoChavePrivada, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                .addComponent(caminhoArquivoDestinoChavePrivada, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selecionarArquivoDestinoChaveprivada))))
                     .addGroup(layout.createSequentialGroup()
@@ -184,6 +141,7 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 208, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -222,22 +180,6 @@ private void campoNumBitsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 // TODO add your handling code here:
 }//GEN-LAST:event_campoNumBitsKeyTyped
 
-private void checkSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSenhaActionPerformed
-// TODO add your handling code here:
-    if(checkSenha.isSelected()){
-        campoSenha.setEnabled(true);
-        campoConfSenha.setEnabled(true);
-        campoSenha.grabFocus();
-    }else{
-        campoSenha.setEnabled(false);
-        campoConfSenha.setEnabled(false);
-    }
-}//GEN-LAST:event_checkSenhaActionPerformed
-
-private void caminhoArquivoDestinoChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caminhoArquivoDestinoChavePrivadaActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_caminhoArquivoDestinoChavePrivadaActionPerformed
-
 private void selecionarArquivoDestinoChaveprivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarArquivoDestinoChaveprivadaActionPerformed
 // TODO add your handling code here:
     JFileChooser abrir = new JFileChooser();
@@ -250,13 +192,28 @@ private void selecionarArquivoDestinoChaveprivadaActionPerformed(java.awt.event.
     }
 }//GEN-LAST:event_selecionarArquivoDestinoChaveprivadaActionPerformed
 
+private void checkSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSenhaActionPerformed
+// TODO add your handling code here:
+    if(checkSenha.isSelected()){
+        campoSenha.setEnabled(true);
+        campoConfSenha.setEnabled(true);
+        campoSenha.grabFocus();
+    }else{
+        campoSenha.setEnabled(false);
+        campoConfSenha.setEnabled(false);
+    }
+}//GEN-LAST:event_checkSenhaActionPerformed
+
 private void botaoCriaChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriaChavePrivadaActionPerformed
 // TODO add your handling code here:
     
+ //Quando você gerar a chave você vai saber o caminho então guarda em caminho e depois dá um getCaminho e pronto.   
     
-    
-    statusTela = true;
 }//GEN-LAST:event_botaoCriaChavePrivadaActionPerformed
+
+private void caminhoArquivoDestinoChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caminhoArquivoDestinoChavePrivadaActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_caminhoArquivoDestinoChavePrivadaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,21 +232,29 @@ private void botaoCriaChavePrivadaActionPerformed(java.awt.event.ActionEvent evt
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCriarChavePrivada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCriarChavePrivadaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCriarChavePrivada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCriarChavePrivadaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCriarChavePrivada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCriarChavePrivadaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCriarChavePrivada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCriarChavePrivadaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new TelaCriarChavePrivada().setVisible(true);
+                TelaCriarChavePrivadaDialog dialog = new TelaCriarChavePrivadaDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

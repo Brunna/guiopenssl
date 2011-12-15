@@ -13,6 +13,9 @@ package guiopenssl.gui;
 import guiopenssl.utilities.Shell;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -27,7 +30,7 @@ public class TelaHash extends javax.swing.JFrame {
         initComponents();
     }
     
-    public boolean ValidarForm(){
+    public Boolean ValidarForm(){
         
         if(arquivoOrigemHash.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Escolha o caminho do Arquivo!", "Alerta" , JOptionPane.ERROR_MESSAGE);
@@ -83,7 +86,7 @@ public class TelaHash extends javax.swing.JFrame {
 
         jLabel2.setText("Selecione o algoritmo de hash: ");
 
-        comboAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "md5", "md4", "md2", "sha1", "sha", "mdc2", "ripemd160" }));
+        comboAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "md4", "md5", "ripemd160", "sha", "sha1", "sha224", "sha256", "sha384", "sha512", "whirlpool" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,13 +152,84 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // TODO add your handling code here:
-    Shell s = new Shell();  
-    BufferedWriter buf;
-    String shell = "openssl ";
-    
+    Shell s = new Shell();
+    BufferedReader bufer = null;
+    String line = null;
+    String shell = "openssl dgst ";
+    /*
+     md4
+    md5
+    ripemd160
+    sha
+    sha1
+    sha224
+    sha256
+    sha384
+    sha512
+    whirlpool
+     */
     if(ValidarForm()){
-        JOptionPane.showMessageDialog(null,"Deu Certo!!", "Alerta" , JOptionPane.ERROR_MESSAGE);
+        //JOptionPane.showMessageDialog(null,"Deu Certo!!", "Alerta" , JOptionPane.ERROR_MESSAGE);
+    
+        switch(comboAlgoritmo.getSelectedIndex()){
+            case 0:
+                shell = shell + "-md4 ";
+                break;
+            case 1:
+                shell = shell + "-md5 ";
+                break;
+            case 2:
+                shell = shell + "-ripemd160 ";
+                break;
+            case 3:
+                shell = shell + "-sha ";
+                break;
+            case 4:
+                shell = shell + "-sha1 ";
+                break;
+            case 5:
+                shell = shell + "-sha224 ";
+                break;
+            case 6:
+                shell = shell + "-sha256 ";
+                break;
+            case 7:
+                shell = shell + "-sha384 ";
+                break;
+            case 8:
+                shell = shell + "-sha512 ";
+                break;
+            case 9:
+                shell = shell + "-whirlpool ";
+                break;
+        }
+        
+        shell = shell +" "+ arquivoOrigemHash.getText();
+        
+        s.ExecComandoShell(shell);
+        try {
+            bufer = s.GetBufferedReader();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaHash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TelaHash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            line = bufer.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(TelaHash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        jTextArea1.setText(line);
+        
     }
+    
     
     
 }//GEN-LAST:event_jButton1ActionPerformed
