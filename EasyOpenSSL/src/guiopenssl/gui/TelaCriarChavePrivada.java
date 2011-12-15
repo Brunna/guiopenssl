@@ -44,7 +44,7 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         s.ExecComandoShell(comando);
         
         comando = campoSenha.getPassword().toString();
-        System.out.println(caminho);
+        System.out.println(comando);
         
         s.ExecComandoShell(comando);
         
