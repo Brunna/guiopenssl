@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import utilites.Shell;
+import guiopenssl.utilities.Shell;
 
 /**
  *
@@ -436,7 +436,7 @@ private void bCriptografarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
            shell = shell + "-k " + password.getText() + " ";
        }
        
-       buf = s.ExecComandoShell(shell);//execultando o comando
+       s.ExecComandoShell(shell);//execultando o comando
        
        try {
             Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s
@@ -644,7 +644,7 @@ private void b_decriptografaActionPerformed(java.awt.event.ActionEvent evt) {//G
            shell = shell + "-k " + password.getText() + " ";
        }
        
-       buf = s.ExecComandoShell(shell);//execultando o comando
+       s.ExecComandoShell(shell);//execultando o comando
        
        try {
             Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s

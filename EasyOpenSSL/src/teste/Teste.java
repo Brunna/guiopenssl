@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utilites.Shell;
+import guiopenssl.utilities.Shell;
 
 /**
  *
@@ -27,15 +27,17 @@ public class Teste {
         
 
             Shell s = new Shell();//classe que fiz com abstração para execultar na shell
+
             File f1 = new File("teste.dtxt");
             File f2 = new File("teste.b64");
-            BufferedReader buf;
-            String line = new String();
+        try {
+            // new TelaPrincipal().setVisible(true);//abre tela principal
+            BufferedReader GetBufferedReader = s.GetBufferedReader();
+        } catch (Exception ex) {
+            Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            s.ExecComandoShell("openssl req  -new -keyout cakey.pem -out careq.pem -passout pass:1234567890");//execultando o comando
             
-           // new TelaPrincipal().setVisible(true);//abre tela principal
-            
-            buf = s.ExecComandoShell("openssl des -nosalt -in teste.txt -out teste.b64 -k oi");//execultando o comando
-        
         try {
             Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s
         } catch (InterruptedException ex) {
@@ -43,9 +45,11 @@ public class Teste {
         }
             
                     
-            buf = s.ExecComandoShell("openssl des -d -nosalt  -in  teste.b64 -out teste.dtxt -k oi");
+
+            s.ExecComandoShell("openssl des -d -nosalt  -in  teste.b64 -out teste.dtxt -k oi");
         
-        try {
+            
+         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

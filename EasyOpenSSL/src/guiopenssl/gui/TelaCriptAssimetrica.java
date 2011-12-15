@@ -16,8 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import sun.awt.windows.ThemeReader;
-import utilites.Shell;
+import guiopenssl.utilities.Shell;
+
 
 /**
  *
@@ -318,7 +318,7 @@ private void botaoCriptografarActionPerformed(java.awt.event.ActionEvent evt) {/
         
         
         
-        buf = s.ExecComandoShell(shell);//executando o comando
+        s.ExecComandoShell(shell);//executando o comando
         
         
        
