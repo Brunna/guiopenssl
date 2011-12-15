@@ -11,7 +11,9 @@
 package guiopenssl.gui;
 
 import guiopenssl.utilities.Shell;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -38,7 +40,7 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         }else{
             numeroBits = Long.parseLong(campoNumBits.getText());
             
-            if(numeroBits <= 512){
+            if(numeroBits < 512){
                         JOptionPane.showMessageDialog(null, "Digite um número válido maior ou igual que 512!", "Alerta", JOptionPane.ERROR_MESSAGE);
                         campoNumBits.grabFocus();
                         return false;
@@ -51,13 +53,13 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
             return false;
         }
         
-        if ((campoSenha.getPassword().length == 0)) {
+        if ((campoSenha.getPassword().length == 0) && !botaoNenhum.isSelected()) {
             JOptionPane.showMessageDialog(null, "Digite um senha para a criptografia!", "Alerta", JOptionPane.ERROR_MESSAGE);
             campoSenha.grabFocus();
             return false;
         }
 
-        if (campoSenha.getText().compareTo(campoConfSenha.getText()) != 0) {
+        if ((campoSenha.getText().compareTo(campoConfSenha.getText()) != 0) && !botaoNenhum.isSelected()) {
             JOptionPane.showMessageDialog(null, "Senhas não conferem!", "Alerta", JOptionPane.ERROR_MESSAGE);
             campoSenha.grabFocus();
             campoConfSenha.grabFocus();
@@ -66,8 +68,8 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         
         if(botaoNenhum.isSelected()){
             campoSenha.setEnabled(false);
-            campoConfSenha.setEnabled(true);
-            return false;
+            campoConfSenha.setEnabled(false);
+            return true;
         }
         
   
@@ -280,22 +282,23 @@ private void botaoCriaChavePrivadaActionPerformed(java.awt.event.ActionEvent evt
     // TODO add your handling code here:
     Shell s = new Shell();
     String comando = "openssl genrsa ";
+    BufferedWriter bw = null;
     
     if(ValidaForm()){
         String caminhoChave = caminhoArquivoDestinoChavePrivada.getText();
         File fDestino = new File(caminhoChave);
 
         if(botaoDES.isSelected()){
-            comando = comando + "-out " + caminhoChave + " -des " + campoSenha.getText() + numeroBits;
+            comando = comando + "-out " + caminhoChave +" -passout pass:"+ campoSenha.getText() + " -des " + numeroBits;
         }
         if(botaoTripleDES.isSelected()){
-            comando = comando + "-out " + caminhoChave + " -des3 " + campoSenha.getText() + numeroBits; 
+            comando = comando + "-out " + caminhoChave +" -passout pass:"+ campoSenha.getText() + " -des3 " + numeroBits; 
         }
         if(botaoNenhum.isSelected()){
             comando = comando + "-out " + caminhoChave + " " + numeroBits;
         }
         
-        System.out.println(caminhoChave);
+        System.out.println(comando);
         
         s.ExecComandoShell(comando);
         
@@ -340,8 +343,6 @@ private void botaoNenhumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     if(botaoNenhum.isSelected()){
         campoSenha.setEnabled(false);
         campoConfSenha.setEnabled(false);
-        
-        campoSenha.grabFocus();
     }
 }//GEN-LAST:event_botaoNenhumActionPerformed
 
