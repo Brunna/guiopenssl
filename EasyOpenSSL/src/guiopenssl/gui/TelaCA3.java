@@ -118,7 +118,19 @@ private void gerarCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         } catch (Exception ex) {
             Logger.getLogger(TelaCA3.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+        /*Para colocar os dados tiraria esse for
+         e colocava o seguinte
+          vamos supor q ele pede a cidade primeiro faria:
+         bw.write("joão pessoa\n");
+         bw.flush();
+          na segunda era pais
+         bw.write("BR\n");
+         bw.flush();
+         ....
+         E ai iria colocando o resto dos dados.
+         
+         
+         */
         for(int i=0;i<9;i++){
             try {
                 bw.write("\n");//Escreve na entrada padrão
