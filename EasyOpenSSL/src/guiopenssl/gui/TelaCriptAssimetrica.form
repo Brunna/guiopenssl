@@ -1,6 +1,10 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Criptografia Assim&#xe9;trica"/>
@@ -27,64 +31,47 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelTipoAlgoritmo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelNumBits" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="labelTipoAlgoritmo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tipoAlgoritmo" pref="473" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labelSePossuiChavePrivada" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="campoNumBits" pref="318" max="32767" attributes="0"/>
-                          <Component id="tipoAlgoritmo" alignment="0" pref="318" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="chavePrivadaSim" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="campoChavePrivada" pref="356" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="botaoChavePrivada" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="chavePrivadaNao" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="1">
-                                  <Component id="labelArquivoDestino" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="caminhoArquivoDestino" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelArquivoOrigem" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="caminhoArquivoOrigem" min="-2" pref="222" max="-2" attributes="0"/>
-                              </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelArquivoDestino" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="caminhoArquivoDestino" pref="264" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="selecionarArquivoDestino" max="32767" attributes="1"/>
-                              <Component id="selecionarArquivoOrigem" alignment="0" min="-2" max="-2" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelArquivoOrigem" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="caminhoArquivoOrigem" pref="377" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelConfSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="campoSenha" max="32767" attributes="1"/>
-                              <Component id="campoConfSenha" alignment="0" min="-2" pref="120" max="-2" attributes="1"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" pref="12" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="1">
-                                  <Component id="caminhoLerChaveArquivo" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botaoLerChaveArquivo" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLerChaveArquivo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="selecionarArquivoOrigem" min="-2" max="-2" attributes="1"/>
+                          <Component id="selecionarArquivoDestino" alignment="0" min="-2" max="-2" attributes="1"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="353" max="-2" attributes="0"/>
-                          <Component id="botaoCriptografar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="botaoCriptografar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -100,9 +87,17 @@
                   <Component id="tipoAlgoritmo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelNumBits" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoNumBits" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="chavePrivadaSim" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoChavePrivada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoChavePrivada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="chavePrivadaNao" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="labelSePossuiChavePrivada" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -116,35 +111,12 @@
                   <Component id="caminhoArquivoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="selecionarArquivoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelConfSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoConfSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLerChaveArquivo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="caminhoLerChaveArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botaoLerChaveArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="jSeparator1" min="-2" pref="66" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botaoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botaoCriptografar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -205,40 +177,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selecionarArquivoDestinoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelSenha">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Digite senha:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelConfSenha">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Confirme senha:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="campoSenha">
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="campoConfSenha">
-    </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator1">
-      <Properties>
-        <Property name="orientation" type="int" value="1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jLerChaveArquivo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ler Chave de Arquivo"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jLerChaveArquivoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="caminhoLerChaveArquivo">
-    </Component>
-    <Component class="javax.swing.JButton" name="botaoLerChaveArquivo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="selecionar"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="botaoCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
@@ -255,16 +193,45 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCriptografarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelNumBits">
+    <Component class="javax.swing.JLabel" name="labelSePossuiChavePrivada">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Selecione o n&#xfa;mero de bits:"/>
+        <Property name="text" type="java.lang.String" value="J&#xe1; possui chave privada?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="campoNumBits">
+    <Component class="javax.swing.JRadioButton" name="chavePrivadaSim">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sim,"/>
+      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNumBitsActionPerformed"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoNumBitsKeyTyped"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chavePrivadaSimActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="chavePrivadaNao">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="N&#xe3;o, desejo criar uma agora."/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;spam&gt;&lt;b&gt;A&#xe7;&#xe3;o ser&#xe1; executada ao presssionar &quot;Criptografar!&quot;&lt;/b&gt;&lt;/spam&gt;&lt;/html&gt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chavePrivadaNaoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="campoChavePrivada">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botaoChavePrivada">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="selecionar"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
