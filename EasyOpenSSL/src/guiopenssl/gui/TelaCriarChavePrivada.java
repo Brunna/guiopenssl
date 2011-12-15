@@ -12,6 +12,8 @@ package guiopenssl.gui;
 
 import guiopenssl.utilities.Shell;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -27,33 +29,6 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
     /** Creates new form TelaCriarChavePrivada */
     public TelaCriarChavePrivada() {
         initComponents();
-    }
-    
-    public String GerarChavePrivada(){
-        
-        Shell s = new Shell();
-        
-        String comando = "openssl genrsa ";
-        
-        if(checkSenha.isSelected()){
-            comando = comando + "-des3 -out " + caminhoArquivoDestinoChavePrivada.getText() + " " + numeroBits;
-        }else{
-            comando = comando + "-out" + caminhoArquivoDestinoChavePrivada + " " + numeroBits; 
-        }
-        
-        s.ExecComandoShell(comando);
-        
-        comando = campoSenha.getPassword().toString();
-        System.out.println(comando);
-        
-        s.ExecComandoShell(comando);
-        
-        comando = campoConfSenha.getPassword().toString();
-        
-        s.ExecComandoShell(comando);
-               
-        return caminhoArquivoDestinoChavePrivada.getText();
-
     }
     
     public boolean ValidaForm(){
@@ -88,6 +63,13 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
             campoConfSenha.grabFocus();
             return false;
         }
+        
+        if(botaoNenhum.isSelected()){
+            campoSenha.setEnabled(false);
+            campoConfSenha.setEnabled(true);
+            return false;
+        }
+        
   
     return true;
     }
@@ -101,18 +83,21 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         labelNumBits = new javax.swing.JLabel();
         campoNumBits = new javax.swing.JTextField();
         campoConfSenha = new javax.swing.JPasswordField();
         labelConfSenha = new javax.swing.JLabel();
         campoSenha = new javax.swing.JPasswordField();
-        labelUsoSenha = new javax.swing.JLabel();
-        checkSenha = new javax.swing.JCheckBox();
         labelSenha = new javax.swing.JLabel();
         botaoCriaChavePrivada = new javax.swing.JButton();
         labelArquivoDestinoChavePrivada = new javax.swing.JLabel();
         caminhoArquivoDestinoChavePrivada = new javax.swing.JTextField();
         selecionarArquivoDestinoChaveprivada = new javax.swing.JButton();
+        labelParamEncrip = new javax.swing.JLabel();
+        botaoDES = new javax.swing.JRadioButton();
+        botaoTripleDES = new javax.swing.JRadioButton();
+        botaoNenhum = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,14 +119,6 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         labelConfSenha.setText("Confirme senha:");
 
         campoSenha.setEnabled(false);
-
-        labelUsoSenha.setText("Desejar usar senha?");
-
-        checkSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkSenhaActionPerformed(evt);
-            }
-        });
 
         labelSenha.setText("Digite senha:");
 
@@ -167,6 +144,33 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
             }
         });
 
+        labelParamEncrip.setText("Parâmetro de encriptação:");
+
+        buttonGroup1.add(botaoDES);
+        botaoDES.setText("DES");
+        botaoDES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDESActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(botaoTripleDES);
+        botaoTripleDES.setText("TRIPLE-DES");
+        botaoTripleDES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTripleDESActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(botaoNenhum);
+        botaoNenhum.setSelected(true);
+        botaoNenhum.setText("Nenhum");
+        botaoNenhum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNenhumActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,16 +178,6 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelSenha)
-                            .addComponent(labelConfSenha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoSenha)
-                            .addComponent(campoConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(botaoCriaChavePrivada))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelArquivoDestinoChavePrivada)
@@ -196,9 +190,22 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selecionarArquivoDestinoChaveprivada))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelUsoSenha)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelSenha)
+                            .addComponent(labelConfSenha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkSenha)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoSenha)
+                            .addComponent(campoConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(botaoCriaChavePrivada))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelParamEncrip)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoTripleDES)
+                            .addComponent(botaoDES)
+                            .addComponent(botaoNenhum))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -215,10 +222,14 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
                         .addComponent(labelArquivoDestinoChavePrivada)
                         .addComponent(caminhoArquivoDestinoChavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelUsoSenha, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(checkSenha, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelParamEncrip)
+                    .addComponent(botaoDES))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoTripleDES)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoNenhum)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSenha)
                     .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,20 +252,16 @@ private void campoNumBitsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 // TODO add your handling code here:
 }//GEN-LAST:event_campoNumBitsKeyTyped
 
-private void checkSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSenhaActionPerformed
-// TODO add your handling code here:
-    if(checkSenha.isSelected()){
-        campoSenha.setEnabled(true);
-        campoConfSenha.setEnabled(true);
-        campoSenha.grabFocus();
-    }else{
-        campoSenha.setEnabled(false);
-        campoConfSenha.setEnabled(false);
-    }
-}//GEN-LAST:event_checkSenhaActionPerformed
-
 private void caminhoArquivoDestinoChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caminhoArquivoDestinoChavePrivadaActionPerformed
 // TODO add your handling code here:
+    JFileChooser abrir = new JFileChooser();
+    String caminho;
+    int retorno = abrir.showDialog(null, "Salvar");
+
+    if (retorno == JFileChooser.APPROVE_OPTION) {
+        caminho = abrir.getSelectedFile().getAbsolutePath();
+        caminhoArquivoDestinoChavePrivada.setText(caminho);
+    }
 }//GEN-LAST:event_caminhoArquivoDestinoChavePrivadaActionPerformed
 
 private void selecionarArquivoDestinoChaveprivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarArquivoDestinoChaveprivadaActionPerformed
@@ -271,19 +278,72 @@ private void selecionarArquivoDestinoChaveprivadaActionPerformed(java.awt.event.
 
 private void botaoCriaChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriaChavePrivadaActionPerformed
     // TODO add your handling code here:
-    File destino;
-    String destinoChave;
-    destinoChave = caminhoArquivoDestinoChavePrivada.getText();
-    destino = new File(destinoChave);
+    Shell s = new Shell();
+    String comando = "openssl genrsa ";
     
-    if(destino.exists() && destino.length()>1){//teste para ver se arquivo foi gerado com sucesso.
-           JOptionPane.showMessageDialog(null, "Chave gerada com Sucesso! " + destino.getName() ,"OK" , JOptionPane.INFORMATION_MESSAGE);
-    }else{
-           JOptionPane.showMessageDialog(null, "Erro ao gerar chave! Tente Novamente.","Alerta" , JOptionPane.ERROR_MESSAGE);
-    }
-    dispose();
+    if(ValidaForm()){
+        String caminhoChave = caminhoArquivoDestinoChavePrivada.getText();
+        File fDestino = new File(caminhoChave);
+
+        if(botaoDES.isSelected()){
+            comando = comando + "-out " + caminhoChave + " -des " + campoSenha.getText() + numeroBits;
+        }
+        if(botaoTripleDES.isSelected()){
+            comando = comando + "-out " + caminhoChave + " -des3 " + campoSenha.getText() + numeroBits; 
+        }
+        if(botaoNenhum.isSelected()){
+            comando = comando + "-out " + caminhoChave + " " + numeroBits;
+        }
+        
+        System.out.println(caminhoChave);
+        
+        s.ExecComandoShell(comando);
+        
+        try {
+            Thread.sleep(1000);//tem que dar um sleep se ñ o arquivo ñ é gerado acho q 1 a 3 segundos ta bom 1000 = 1s
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TelaCriptSimetrica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if(fDestino.exists() && fDestino.length()>1){//teste para ver se arquivo foi gerado com sucesso.
+               JOptionPane.showMessageDialog(null, "Chave gerada com Sucesso! " + fDestino.getName() ,"OK" , JOptionPane.INFORMATION_MESSAGE);
+        }else{
+               JOptionPane.showMessageDialog(null, "Erro ao gerar chave! Tente Novamente.","Alerta" , JOptionPane.ERROR_MESSAGE);
+        }
+        dispose();
+    }    
 
 }//GEN-LAST:event_botaoCriaChavePrivadaActionPerformed
+
+private void botaoDESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDESActionPerformed
+// TODO add your handling code here:
+    if(botaoDES.isSelected()){
+        campoSenha.setEnabled(true);
+        campoConfSenha.setEnabled(true);
+        
+        campoSenha.grabFocus();
+    }
+}//GEN-LAST:event_botaoDESActionPerformed
+
+private void botaoTripleDESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTripleDESActionPerformed
+// TODO add your handling code here:
+    if(botaoTripleDES.isSelected()){
+        campoSenha.setEnabled(true);
+        campoConfSenha.setEnabled(true);
+        
+        campoSenha.grabFocus();
+    }
+}//GEN-LAST:event_botaoTripleDESActionPerformed
+
+private void botaoNenhumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNenhumActionPerformed
+// TODO add your handling code here:
+    if(botaoNenhum.isSelected()){
+        campoSenha.setEnabled(false);
+        campoConfSenha.setEnabled(false);
+        
+        campoSenha.grabFocus();
+    }
+}//GEN-LAST:event_botaoNenhumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,16 +382,19 @@ private void botaoCriaChavePrivadaActionPerformed(java.awt.event.ActionEvent evt
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCriaChavePrivada;
+    private javax.swing.JRadioButton botaoDES;
+    private javax.swing.JRadioButton botaoNenhum;
+    private javax.swing.JRadioButton botaoTripleDES;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField caminhoArquivoDestinoChavePrivada;
     private javax.swing.JPasswordField campoConfSenha;
     private javax.swing.JTextField campoNumBits;
     private javax.swing.JPasswordField campoSenha;
-    private javax.swing.JCheckBox checkSenha;
     private javax.swing.JLabel labelArquivoDestinoChavePrivada;
     private javax.swing.JLabel labelConfSenha;
     private javax.swing.JLabel labelNumBits;
+    private javax.swing.JLabel labelParamEncrip;
     private javax.swing.JLabel labelSenha;
-    private javax.swing.JLabel labelUsoSenha;
     private javax.swing.JButton selecionarArquivoDestinoChaveprivada;
     // End of variables declaration//GEN-END:variables
 }
