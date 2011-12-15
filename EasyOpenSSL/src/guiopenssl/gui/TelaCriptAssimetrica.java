@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import guiopenssl.utilities.Shell;
+import guiopenssl.gui.TelaCriarChavePrivada;
 
 
 /**
@@ -31,22 +32,10 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
     public TelaCriptAssimetrica() {
         initComponents();
     }
-    
-    public String GerarChavePrivada(){
-        String s = null;
-       
-        TelaCriarChavePrivada telachaveprivada = new TelaCriarChavePrivada();
-        telachaveprivada.setVisible(true);
-        
-        while(telachaveprivada.isActive()){
-                
-        }
-        return s;
-    }
 
     public boolean ValidarForm() {
 
-        if (chavePrivadaSim.isSelected() && campoChavePrivada.getText().equals("")) {
+        if (chavePrivadaSim.isSelected() && caminhoChavePrivada.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Selecione a Chave Privada!", "Alerta", JOptionPane.ERROR_MESSAGE);
             caminhoArquivoOrigem.grabFocus();
             return false;
@@ -64,10 +53,6 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
             return false;
         }
         
-        if(chavePrivadaNao.isSelected()){
-            GerarChavePrivada();            
-        }
-                
         return true;
         
     }
@@ -95,7 +80,7 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
         labelSePossuiChavePrivada = new javax.swing.JLabel();
         chavePrivadaSim = new javax.swing.JRadioButton();
         chavePrivadaNao = new javax.swing.JRadioButton();
-        campoChavePrivada = new javax.swing.JTextField();
+        caminhoChavePrivada = new javax.swing.JTextField();
         botaoChavePrivada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -174,7 +159,7 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
             }
         });
 
-        campoChavePrivada.setEnabled(false);
+        caminhoChavePrivada.setEnabled(false);
 
         botaoChavePrivada.setText("selecionar");
         botaoChavePrivada.setEnabled(false);
@@ -197,7 +182,7 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(chavePrivadaSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoChavePrivada, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                                .addComponent(caminhoChavePrivada, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botaoChavePrivada))
                             .addComponent(chavePrivadaNao)))
@@ -233,7 +218,7 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(chavePrivadaSim)
-                            .addComponent(campoChavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(caminhoChavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoChavePrivada))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chavePrivadaNao))
@@ -343,18 +328,30 @@ private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void chavePrivadaNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chavePrivadaNaoActionPerformed
 // TODO add your handling code here:
+    
     if(chavePrivadaNao.isSelected()){
-        campoChavePrivada.setEnabled(false);
+        
+        String caminho;
+        
+        caminhoChavePrivada.setEnabled(false);
         botaoChavePrivada.setEnabled(false);
+        
+        TelaCriarChavePrivada telachaveprivada = new TelaCriarChavePrivada();
+        telachaveprivada.setVisible(true);
+        
+        caminho = telachaveprivada.GerarChavePrivada();
+        
+        caminhoArquivoDestino.setText(caminho);
+        
     }
 }//GEN-LAST:event_chavePrivadaNaoActionPerformed
 
 private void chavePrivadaSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chavePrivadaSimActionPerformed
 // TODO add your handling code here:
     if(chavePrivadaSim.isSelected()){
-        campoChavePrivada.setEnabled(true);
+        caminhoChavePrivada.setEnabled(true);
         botaoChavePrivada.setEnabled(true);
-        campoChavePrivada.grabFocus();
+        caminhoChavePrivada.grabFocus();
     }
 }//GEN-LAST:event_chavePrivadaSimActionPerformed
 
@@ -400,7 +397,7 @@ private void chavePrivadaSimActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField caminhoArquivoDestino;
     private javax.swing.JTextField caminhoArquivoOrigem;
-    private javax.swing.JTextField campoChavePrivada;
+    private javax.swing.JTextField caminhoChavePrivada;
     private javax.swing.JRadioButton chavePrivadaNao;
     private javax.swing.JRadioButton chavePrivadaSim;
     private javax.swing.JLabel labelArquivoDestino;
