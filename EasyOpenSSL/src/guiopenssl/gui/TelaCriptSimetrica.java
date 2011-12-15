@@ -263,7 +263,7 @@ private void bCriptografarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         File fCriptografa = new File(camihnoCript);
         File fDestino = new File(caminhoDestino);
         
-         
+       
        switch(tipoAlgoritmo.getSelectedIndex()){
            case 0:
                shell = shell + "base64 ";
