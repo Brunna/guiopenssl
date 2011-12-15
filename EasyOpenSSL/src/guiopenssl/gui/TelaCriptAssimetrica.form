@@ -130,10 +130,11 @@
     <Component class="javax.swing.JComboBox" name="tipoAlgoritmo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="4">
             <StringItem index="0" value="Diffie-Hellman"/>
-            <StringItem index="1" value="RSA"/>
-            <StringItem index="2" value="DSA (Digital Assignature Algorithm)"/>
+            <StringItem index="1" value="RSA com par&#xe2;metro de encripta&#xe7;&#xe3;o DES"/>
+            <StringItem index="2" value="RSA com par&#xe2;metro de encripta&#xe7;&#xe3;o DES3"/>
+            <StringItem index="3" value="DSA (Digital Assignature Algorithm)"/>
           </StringArray>
         </Property>
       </Properties>
@@ -214,7 +215,6 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="N&#xe3;o, desejo criar uma agora."/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;spam&gt;&lt;b&gt;A&#xe7;&#xe3;o ser&#xe1; executada ao presssionar &quot;Criptografar!&quot;&lt;/b&gt;&lt;/spam&gt;&lt;/html&gt;"/>
       </Properties>
@@ -232,6 +232,9 @@
         <Property name="text" type="java.lang.String" value="selecionar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoChavePrivadaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

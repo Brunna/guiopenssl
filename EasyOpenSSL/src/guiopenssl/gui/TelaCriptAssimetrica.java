@@ -88,7 +88,7 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
 
         labelTipoAlgoritmo.setText("Selecione o tipo de algoritmo:");
 
-        tipoAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diffie-Hellman", "RSA", "DSA (Digital Assignature Algorithm)" }));
+        tipoAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diffie-Hellman", "RSA com parâmetro de encriptação DES", "RSA com parâmetro de encriptação DES3", "DSA (Digital Assignature Algorithm)" }));
         tipoAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoAlgoritmoActionPerformed(evt);
@@ -150,7 +150,6 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(chavePrivadaNao);
-        chavePrivadaNao.setSelected(true);
         chavePrivadaNao.setText("Não, desejo criar uma agora.");
         chavePrivadaNao.setToolTipText("<html><spam><b>Ação será executada ao presssionar \"Criptografar!\"</b></spam></html>");
         chavePrivadaNao.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +162,11 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
 
         botaoChavePrivada.setText("selecionar");
         botaoChavePrivada.setEnabled(false);
+        botaoChavePrivada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoChavePrivadaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,6 +290,7 @@ private void botaoCriptografarActionPerformed(java.awt.event.ActionEvent evt) {/
     String shell = "openssl ";
 
     if (ValidarForm()) {
+        String caminhoChave = caminhoChavePrivada.getText();
         String caminhoOrigem = caminhoArquivoOrigem.getText();
         String caminhoDestino = caminhoArquivoDestino.getText();
         String caminhoArqSenha;
@@ -297,9 +302,13 @@ private void botaoCriptografarActionPerformed(java.awt.event.ActionEvent evt) {/
                 
                 break;
             case 1:
-                shell = shell + "genrsa ";
+                shell = shell + "rsa -des";
                 break;
-     }
+        }
+        
+        shell = shell + "-in " + caminhoChave + " ";
+       
+       shell = shell + "-out " + caminhoDestino + " ";
         
         
         
@@ -331,17 +340,11 @@ private void chavePrivadaNaoActionPerformed(java.awt.event.ActionEvent evt) {//G
     
     if(chavePrivadaNao.isSelected()){
         
-        String caminho;
-        
         caminhoChavePrivada.setEnabled(false);
         botaoChavePrivada.setEnabled(false);
         
         TelaCriarChavePrivada telachaveprivada = new TelaCriarChavePrivada();
         telachaveprivada.setVisible(true);
-        
-        caminho = telachaveprivada.GerarChavePrivada();
-        
-        caminhoArquivoDestino.setText(caminho);
         
     }
 }//GEN-LAST:event_chavePrivadaNaoActionPerformed
@@ -354,6 +357,18 @@ private void chavePrivadaSimActionPerformed(java.awt.event.ActionEvent evt) {//G
         caminhoChavePrivada.grabFocus();
     }
 }//GEN-LAST:event_chavePrivadaSimActionPerformed
+
+private void botaoChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoChavePrivadaActionPerformed
+// TODO add your handling code here:
+    JFileChooser abrir = new JFileChooser();
+    String caminho;
+    int retorno = abrir.showOpenDialog(null);
+
+    if (retorno == JFileChooser.APPROVE_OPTION) {
+        caminho = abrir.getSelectedFile().getAbsolutePath();
+        caminhoChavePrivada.setText(caminho);
+    }
+}//GEN-LAST:event_botaoChavePrivadaActionPerformed
 
     /**
      * @param args the command line arguments
