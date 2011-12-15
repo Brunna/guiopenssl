@@ -10,6 +10,7 @@
  */
 package guiopenssl.gui;
 
+import guiopenssl.gui.TelaCriarChavePrivada;
 import java.io.BufferedReader;
 import java.io.File;
 import java.util.logging.Level;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import guiopenssl.utilities.Shell;
+import javax.swing.JDialog;
 
 
 /**
@@ -34,13 +36,19 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
     
     public String GerarChavePrivada(){
         String s = null;
-       
-        TelaCriarChavePrivada telachaveprivada = new TelaCriarChavePrivada();
-        telachaveprivada.setVisible(true);
         
-        while(telachaveprivada.isActive()){
-                
-        }
+        
+        TelaCriarChavePrivada telachaveprivada = new TelaCriarChavePrivada();
+        TelaCriarChavePrivadaDialog dialog = new TelaCriarChavePrivadaDialog(this, true);
+        
+        //telachaveprivada.setVisible(true);
+        //dialog.setSize(460, 208);
+        //dialog.setModal(true);
+        dialog.setVisible(true);
+        
+        s=dialog.getCaminho();//pegando o caminho setado na tela.
+        
+        
         return s;
     }
 
@@ -65,6 +73,11 @@ public class TelaCriptAssimetrica extends javax.swing.JFrame {
         }
         
         if(chavePrivadaNao.isSelected()){
+            
+            //Ele retorna o caminho de onde a chave privada foi gerada é bom 
+            //guardar isso em alguma lugar pois acho que você vai precisar.
+            //A TelaCriarChavePrivada.java pode sumir depois renomeia a TelaCriarChavePrivadaDialog.java
+            //para TelaCriarChavePrivada.java ok?
             GerarChavePrivada();            
         }
                 
