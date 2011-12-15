@@ -59,34 +59,57 @@ public class TelaCA extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        proximoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criptografia Assimétrica");
 
         jTextArea1.setColumns(20);
+        jTextArea1.setEditable(false);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Para criar uma CA (autoridade cerificadora), siga os passos a seguir:\n\n1. Entre no terminal e digite: cd /usr/lib/ssl/ e dê Enter.\n2. Modifique o arquivo openssl.cnf, em modo de super usuário, digitando: sudo\n     <vim | gedit | mcedit> openssl.cnf e digite sua senha.\n3. Modifique como listado abaixo nas seguintes linhas:\n     linha 75: default_md = sha256 (ou sha384 ou sha512, o que preferir)\n     linha 106: default_bits = 2048 (ou 4096)\n     linha 129: countryName_default = BR\n     linha 133: stateOrProvincyName_default = PB\n     linha 137: localityName_default = Joao Pessoa (essa linha você vai criar)\n     linha 140: 0.organizationName_default = UFPB\n     linha 147: organizationalUnitName_default = Departamento de Informatica (essa linha aparece \n     comentada, você vai retirar a cerquilha do início)\n     linha 151: commonName_default = Autoridade Certificadora da UFPB (essa linha você vai criar)\n     linha 155: emailAddress_default = albuquerque.brunna@gmail.com\n4. OK, dê um esc e digite :wq. Dê enter para salvar o documento.\n5. Agora vá para o dietório misc: cd misc/ e dê Enter. Abra o documento CA.pl.\n6.  ");
+        jTextArea1.setText("Para criar uma CA (autoridade cerificadora), siga os passos a seguir:\n\n1. Entre no terminal e digite: cd /usr/lib/ssl/ e dê Enter.\n2. Modifique o arquivo openssl.cnf, em modo de super usuário, digitando: sudo\n     <vim | gedit | mcedit> openssl.cnf e digite sua senha.\n3. Modifique como listado abaixo nas seguintes linhas:\n     linha 75: default_md = sha256 (ou sha384 ou sha512, o que preferir)\n     linha 106: default_bits = 2048 (ou 4096)\n     linha 129: countryName_default = BR\n     linha 133: stateOrProvincyName_default = PB\n     linha 137: localityName_default = Joao Pessoa (essa linha você vai criar)\n     linha 140: 0.organizationName_default = UFPB\n     linha 147: organizationalUnitName_default = Departamento de Informatica (essa linha aparece \n     comentada, você vai retirar a cerquilha do início)\n     linha 151: commonName_default = Autoridade Certificadora da UFPB (essa linha você vai criar)\n     linha 155: emailAddress_default = albuquerque.brunna@gmail.com\n4. OK, dê um esc e digite :wq. Dê enter para salvar o documento.  ");
         jScrollPane1.setViewportView(jTextArea1);
+
+        proximoButton.setText("Próximo >>");
+        proximoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                proximoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(proximoButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(proximoButton)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void proximoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proximoButtonActionPerformed
+// TODO add your handling code here:
+    TelaCA2 telaCA2 = new TelaCA2();
+    dispose();
+    telaCA2.setVisible(true);
+}//GEN-LAST:event_proximoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,5 +149,6 @@ public class TelaCA extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton proximoButton;
     // End of variables declaration//GEN-END:variables
 }
