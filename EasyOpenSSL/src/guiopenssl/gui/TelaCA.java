@@ -10,7 +10,9 @@
  */
 package guiopenssl.gui;
 
+import guiopenssl.utilities.Shell;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,17 +31,21 @@ public class TelaCA extends javax.swing.JFrame {
         initComponents();
     }
 
-    public boolean ValidarForm() {
+    public void/*Boolean*/ ValidarForm() {
         
-                
-        if (nomeCA.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite o nome da autoridade certificadora!", "Alerta", JOptionPane.ERROR_MESSAGE);
-            nomeCA.grabFocus();
+        /*if ((senhaCA.getPassword().length == 0)) {
+            JOptionPane.showMessageDialog(null, "Digite um senha!", "Alerta", JOptionPane.ERROR_MESSAGE);
+            senhaCA.grabFocus();
             return false;
         }
-        
-        return true;
-        
+
+        if (senhaCA.getText().compareTo(senhaCA1.getText()) != 0) {
+            JOptionPane.showMessageDialog(null, "Senhas não conferem!", "Alerta", JOptionPane.ERROR_MESSAGE);
+            senhaCA1.grabFocus();
+            return false;
+        }
+               
+        return true;*/
     }
 
     /** This method is called from within the constructor to
@@ -51,54 +57,36 @@ public class TelaCA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelCA = new javax.swing.JLabel();
-        nomeCA = new javax.swing.JTextField();
-        geraCAButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criptografia Assimétrica");
 
-        labelCA.setText("Nome da autoridade certificadora:");
-
-        geraCAButton.setText("Gerar");
-        geraCAButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                geraCAButtonActionPerformed(evt);
-            }
-        });
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Para criar uma CA (autoridade cerificadora), siga os passos a seguir:\n\n1. Entre no terminal e digite: cd /usr/lib/ssl/ e dê Enter.\n2. Modifique o arquivo openssl.cnf, em modo de super usuário, digitando: sudo\n     <vim | gedit | mcedit> openssl.cnf e digite sua senha.\n3. Modifique como listado abaixo nas seguintes linhas:\n     linha 75: default_md = sha256 (ou sha384 ou sha512, o que preferir)\n     linha 106: default_bits = 2048 (ou 4096)\n     linha 129: countryName_default = BR\n     linha 133: stateOrProvincyName_default = PB\n     linha 137: localityName_default = Joao Pessoa (essa linha você vai criar)\n     linha 140: 0.organizationName_default = UFPB\n     linha 147: organizationalUnitName_default = Departamento de Informatica (essa linha aparece \n     comentada, você vai retirar a cerquilha do início)\n     linha 151: commonName_default = Autoridade Certificadora da UFPB (essa linha você vai criar)\n     linha 155: emailAddress_default = albuquerque.brunna@gmail.com\n4. OK, dê um esc e digite :wq. Dê enter para salvar o documento.\n5. Agora vá para o dietório misc: cd misc/ e dê Enter. Abra o documento CA.pl.\n6.  ");
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(geraCAButton)
-                    .addComponent(labelCA))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeCA, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCA)
-                    .addComponent(nomeCA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(geraCAButton)
-                .addGap(23, 23, 23))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-private void geraCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geraCAButtonActionPerformed
-// TODO add your handling code here:
-    
-}//GEN-LAST:event_geraCAButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,8 +124,7 @@ private void geraCAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton geraCAButton;
-    private javax.swing.JLabel labelCA;
-    private javax.swing.JTextField nomeCA;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

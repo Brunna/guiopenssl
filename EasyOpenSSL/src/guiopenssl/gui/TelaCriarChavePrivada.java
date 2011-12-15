@@ -10,6 +10,8 @@
  */
 package guiopenssl.gui;
 
+import guiopenssl.utilities.Shell;
+import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -20,16 +22,38 @@ import javax.swing.JOptionPane;
 public class TelaCriarChavePrivada extends javax.swing.JFrame {
 
     private Long numeroBits;
-    private boolean statusTela;
-    private String caminho=null;
     
+        
     /** Creates new form TelaCriarChavePrivada */
     public TelaCriarChavePrivada() {
         initComponents();
     }
     
-    public String GetCaminho(){
-        return caminho;
+    public String GerarChavePrivada(){
+        
+        Shell s = new Shell();
+        
+        String comando = "openssl genrsa ";
+        
+        if(checkSenha.isSelected()){
+            comando = comando + "-des3 -out " + caminhoArquivoDestinoChavePrivada.getText() + " " + numeroBits;
+        }else{
+            comando = comando + "-out" + caminhoArquivoDestinoChavePrivada + " " + numeroBits; 
+        }
+        
+        s.ExecComandoShell(comando);
+        
+        comando = campoSenha.getPassword().toString();
+        System.out.println(comando);
+        
+        s.ExecComandoShell(comando);
+        
+        comando = campoConfSenha.getPassword().toString();
+        
+        s.ExecComandoShell(comando);
+               
+        return caminhoArquivoDestinoChavePrivada.getText();
+
     }
     
     public boolean ValidaForm(){
@@ -66,11 +90,6 @@ public class TelaCriarChavePrivada extends javax.swing.JFrame {
         }
   
     return true;
-    }
-    
-    public Boolean getStatusTela(){
-    
-        return statusTela;
     }
 
     /** This method is called from within the constructor to
@@ -251,11 +270,19 @@ private void selecionarArquivoDestinoChaveprivadaActionPerformed(java.awt.event.
 }//GEN-LAST:event_selecionarArquivoDestinoChaveprivadaActionPerformed
 
 private void botaoCriaChavePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriaChavePrivadaActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
+    File destino;
+    String destinoChave;
+    destinoChave = caminhoArquivoDestinoChavePrivada.getText();
+    destino = new File(destinoChave);
     
-    
-    
-    statusTela = true;
+    if(destino.exists() && destino.length()>1){//teste para ver se arquivo foi gerado com sucesso.
+           JOptionPane.showMessageDialog(null, "Chave gerada com Sucesso! " + destino.getName() ,"OK" , JOptionPane.INFORMATION_MESSAGE);
+    }else{
+           JOptionPane.showMessageDialog(null, "Erro ao gerar chave! Tente Novamente.","Alerta" , JOptionPane.ERROR_MESSAGE);
+    }
+    dispose();
+
 }//GEN-LAST:event_botaoCriaChavePrivadaActionPerformed
 
     /**
