@@ -74,6 +74,9 @@ public class Shell {
         if(!execultou){
             throw new Exception("Execute ExecComandoShell primeiro!");
         }
+        
+        execultou = false;
+        
         return this.br;
     }
     
@@ -82,6 +85,8 @@ public class Shell {
         if(!execultou){
             throw new Exception("Execute ExecComandoShell primeiro!");
         }
+        
+        execultou = false;
         
         return this.bw;
     
