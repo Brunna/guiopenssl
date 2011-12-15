@@ -32,14 +32,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         menuCriptografia = new javax.swing.JMenu();
+        itemCriptoSimetrica2 = new javax.swing.JMenu();
         itemCriptoSimetrica = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         menuCriptoAssimetrica = new javax.swing.JMenu();
         itemMenuAssimCripto = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         menuCertificados = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -55,6 +63,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSSL");
@@ -75,13 +89,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuCriptografia.setText("Criptografia");
 
-        itemCriptoSimetrica.setText("Simétrica");
+        itemCriptoSimetrica2.setText("Simétrica");
+
+        itemCriptoSimetrica.setText("Criptografar");
         itemCriptoSimetrica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemCriptoSimetricaActionPerformed(evt);
             }
         });
-        menuCriptografia.add(itemCriptoSimetrica);
+        itemCriptoSimetrica2.add(itemCriptoSimetrica);
+
+        jMenuItem11.setText("Decriptografar");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        itemCriptoSimetrica2.add(jMenuItem11);
+
+        menuCriptografia.add(itemCriptoSimetrica2);
 
         menuCriptoAssimetrica.setText("Assimétrica");
 
@@ -96,6 +122,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCriptografia.add(menuCriptoAssimetrica);
 
         jMenuBar2.add(menuCriptografia);
+
+        jMenu3.setText("Hash");
+
+        jMenuItem12.setText("Gerar Hash");
+        jMenu3.add(jMenuItem12);
+
+        jMenuItem13.setText("Assinar Arquivo com Hash");
+        jMenu3.add(jMenuItem13);
+
+        jMenuBar2.add(jMenu3);
 
         menuCertificados.setText("Certificados");
 
@@ -178,12 +214,6 @@ private void Sair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair
         dispose();
 }//GEN-LAST:event_Sair
 
-private void itemCriptoSimetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCriptoSimetricaActionPerformed
-// TODO add your handling code here:
-    TelaCriptSimetrica telaCriptSimetrica = new TelaCriptSimetrica();
-        telaCriptSimetrica.setVisible(true);
-}//GEN-LAST:event_itemCriptoSimetricaActionPerformed
-
 private void itemMenuAssimCriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAssimCriptoActionPerformed
 // TODO add your handling code here:
     TelaCriptAssimetrica telaCriptAssimetrica = new TelaCriptAssimetrica();
@@ -195,6 +225,18 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     TelaCA telaCA = new TelaCA();
     telaCA.setVisible(true);
 }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+private void itemCriptoSimetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCriptoSimetricaActionPerformed
+// TODO add your handling code here:
+    TelaCriptSimetrica telaCriptSimetrica = new TelaCriptSimetrica();
+        telaCriptSimetrica.setVisible(true);
+}//GEN-LAST:event_itemCriptoSimetricaActionPerformed
+
+private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+// TODO add your handling code here:
+    TelaDeCriptSimetrica telaDeCriptSimetrica = new TelaDeCriptSimetrica();
+        telaDeCriptSimetrica.setVisible(true);
+}//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,13 +276,21 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemCriptoSimetrica;
+    private javax.swing.JMenu itemCriptoSimetrica2;
     private javax.swing.JMenuItem itemMenuAssimCripto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
